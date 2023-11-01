@@ -1,35 +1,33 @@
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import React from 'react'
 import { WidgetType } from './widgets/types'
-import { Button } from '@/components/ui/button'
 import { widgetsMap } from './widgets/widgets'
 
 type Props = {
-  addWidget: (widgetKey: WidgetType) => void
+  removeWidget: (widgetKey: WidgetType) => void
   selectedWidgets: WidgetType[]
 }
 
-const AddWidgetDropdown = (props: Props) => {
-  const { addWidget, selectedWidgets } = props
-
-  const widgets = Object.keys(widgetsMap) as WidgetType[]
+const RemoveWidgetDropdown = (props: Props) => {
+  const { removeWidget, selectedWidgets } = props
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button>Add widget</Button>
+        <Button disabled={!selectedWidgets.length} variant='destructive'>
+          Remove widget
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {widgets.map((widgetKey) => (
+        {selectedWidgets.map((widgetKey) => (
           <DropdownMenuItem
             key={widgetKey}
-            onSelect={() => addWidget(widgetKey)}
-            disabled={selectedWidgets.includes(widgetKey)}
+            onSelect={() => removeWidget(widgetKey)}
           >
             {widgetsMap[widgetKey].name}
           </DropdownMenuItem>
@@ -39,4 +37,4 @@ const AddWidgetDropdown = (props: Props) => {
   )
 }
 
-export default AddWidgetDropdown
+export default RemoveWidgetDropdown

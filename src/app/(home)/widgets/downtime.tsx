@@ -1,9 +1,9 @@
-import React from 'react'
+import { WidgetStyles } from './widget.styles'
 
 type Props = {}
 
 const Downtime = (props: Props) => {
-  return <div>Downtime</div>
+  return <WidgetStyles className='bg-red-500'>Downtime</WidgetStyles>
 }
 
 export default Downtime

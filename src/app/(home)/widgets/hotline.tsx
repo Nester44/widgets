@@ -1,14 +1,10 @@
 import { Button } from '@/components/ui/button'
-import React from 'react'
+import { WidgetStyles } from './widget.styles'
 
 type Props = {}
 
 const Hotline = (props: Props) => {
-  return (
-    <div>
-      <Button>Contact hotline</Button>
-    </div>
-  )
+  return <WidgetStyles className='bg-blue-500'>Hotline</WidgetStyles>
 }
 
 export default Hotline

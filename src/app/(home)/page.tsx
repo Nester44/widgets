@@ -1,20 +1,30 @@
 'use client'
 
-import GridLayout from 'react-grid-layout'
+import { Responsive, WidthProvider } from 'react-grid-layout'
 
 import { Toaster } from '@/components/ui/toaster'
 import { useState } from 'react'
+import CustomGridItem from '../../components/customGridItem'
 import ControlPanel from './controlPanel'
+import { WidgetLayout } from './widgets/types'
 import useWidgetsLayout from './useWidgetsLayout'
-import Widget from './widgets'
+import { widgetsMap } from './widgets/widgets'
 import '/node_modules/react-grid-layout/css/styles.css'
 import '/node_modules/react-resizable/css/styles.css'
 
-const columns = 3
+const ResponsiveGridLayout = WidthProvider(Responsive)
+
+const columns = 6
 
 const Home = () => {
-  const { layout, addWidget, removeWidget, selectedWidgets } =
-    useWidgetsLayout(columns)
+  const {
+    layout,
+    addWidget,
+    removeWidget,
+    selectedWidgets,
+    setLayout,
+    resetLayout,
+  } = useWidgetsLayout(columns)
   const [isCompact, setIsCompact] = useState(true)
 
   const toggleCompact = () => setIsCompact((prev) => !prev)
@@ -23,22 +33,27 @@ const Home = () => {
     <div className='p-16'>
       <ControlPanel
         addWidget={addWidget}
+        removeWidget={removeWidget}
+        resetLayout={resetLayout}
         selectedWidgets={selectedWidgets}
         toggleCompact={toggleCompact}
         isCompact={isCompact}
       />
 
-      <GridLayout
-        layout={layout}
-        cols={columns}
-        rowHeight={300}
-        width={1000}
+      <ResponsiveGridLayout
+        layouts={{ lg: layout }}
+        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+        cols={{ lg: 8, md: 8, sm: 6, xs: 4, xxs: 2 }}
+        rowHeight={150}
         compactType={isCompact ? 'vertical' : null}
+        onLayoutChange={(l) => setLayout(l as WidgetLayout[])}
+        isDraggable={true}
+        maxRows={6}
       >
         {layout.map(({ i }) => (
-          <Widget key={i} widgetKey={i} removeWidget={() => removeWidget(i)} />
+          <CustomGridItem key={i}>{widgetsMap[i].component({})}</CustomGridItem>
         ))}
-      </GridLayout>
+      </ResponsiveGridLayout>
       <Toaster />
     </div>
   )
