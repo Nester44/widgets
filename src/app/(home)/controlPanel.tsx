@@ -1,5 +1,5 @@
 import React from 'react'
-import AddWidgetDropdown from './addWidgetDropdown'
+import EditWidgetsDropdown from './editWidgetDropdown'
 import CompactSwitch from './boundSwitch'
 import { WidgetType } from './widgets/types'
 import RemoveWidgetDropdown from './removeWidgetDropdown'
@@ -26,11 +26,8 @@ const ControlPanel = (props: Props) => {
 
   return (
     <div className='flex justify-content-between  gap-8'>
-      <AddWidgetDropdown
+      <EditWidgetsDropdown
         addWidget={addWidget}
-        selectedWidgets={selectedWidgets}
-      />
-      <RemoveWidgetDropdown
         removeWidget={removeWidget}
         selectedWidgets={selectedWidgets}
       />
