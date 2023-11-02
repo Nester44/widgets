@@ -1,10 +1,13 @@
-import { Button } from '@/components/ui/button'
-import { WidgetStyles } from './widget.styles'
+import WidgetWrapper from './widgetWrapper'
 
 type Props = {}
 
 const Hotline = (props: Props) => {
-  return <WidgetStyles className='bg-blue-500'>Hotline</WidgetStyles>
+  return (
+    <WidgetWrapper widgetKey='hotline' className='bg-blue-500'>
+      Hotline
+    </WidgetWrapper>
+  )
 }
 
 export default Hotline

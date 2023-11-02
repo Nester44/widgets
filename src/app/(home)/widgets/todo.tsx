@@ -1,9 +1,9 @@
 import { Checkbox } from '@/components/ui/checkbox'
-import { WidgetStyles } from './widget.styles'
+import WidgetWrapper from './widgetWrapper'
 
 const Todo = () => {
   return (
-    <WidgetStyles className='bg-sky-500'>
+    <WidgetWrapper widgetKey='todo' className={'bg-sky-500'}>
       <h1>Todo</h1>
       <div className='flex items-center space-x-2 mt-2'>
         <Checkbox id='task' />
@@ -14,7 +14,7 @@ const Todo = () => {
           Celebrate Halloween
         </label>
       </div>
-    </WidgetStyles>
+    </WidgetWrapper>
   )
 }
 

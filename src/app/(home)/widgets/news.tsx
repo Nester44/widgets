@@ -1,13 +1,13 @@
-import { WidgetStyles } from './widget.styles'
+import WidgetWrapper from './widgetWrapper'
 
 type Props = {}
 
 const News = (props: Props) => {
   return (
-    <WidgetStyles className='bg-amber-500'>
+    <WidgetWrapper widgetKey='news' className='bg-amber-500'>
       <h2>News</h2>
       Here will be news
-    </WidgetStyles>
+    </WidgetWrapper>
   )
 }
 

@@ -1,0 +1,18 @@
+.jiggle {
+  animation: jiggle 0.2s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.jiggle:active {
+  animation: none;
+  cursor: default;
+}
+
+@keyframes jiggle {
+  0% {
+    transform: rotate(-0.25deg);
+  }
+  50% {
+    transform: rotate(0.25deg);
+  }
+}

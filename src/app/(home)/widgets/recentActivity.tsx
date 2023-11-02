@@ -1,10 +1,13 @@
-import React from 'react'
-import { WidgetStyles } from './widget.styles'
+import WidgetWrapper from './widgetWrapper'
 
 type Props = {}
 
 const RecentActivity = (props: Props) => {
-  return <WidgetStyles className='bg-teal-500'>Recent activity</WidgetStyles>
+  return (
+    <WidgetWrapper widgetKey='recentActivity' className='bg-teal-500'>
+      Recent activity
+    </WidgetWrapper>
+  )
 }
 
 export default RecentActivity
