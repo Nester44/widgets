@@ -14,6 +14,7 @@ import '/node_modules/react-resizable/css/styles.css'
 const ResponsiveGridLayout = WidthProvider(Responsive)
 
 const Home = () => {
+  const [columns, setColumns] = useState(6)
   const {
     layout,
     addWidget,
@@ -21,7 +22,7 @@ const Home = () => {
     selectedWidgets,
     setLayout,
     resetLayout,
-  } = useWidgetsLayout(6)
+  } = useWidgetsLayout(columns)
   const [isCompact, setIsCompact] = useState(true)
   const [isEdit, setIsEdit] = useState(false)
 
@@ -42,12 +43,15 @@ const Home = () => {
         />
 
         <ResponsiveGridLayout
-          layouts={{ lg: layout }}
+          layouts={{
+            lg: layout,
+          }}
           breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
           cols={{ lg: 8, md: 8, sm: 6, xs: 4, xxs: 2 }}
           rowHeight={150}
           compactType={isCompact ? 'vertical' : null}
           onLayoutChange={(l) => setLayout(l as WidgetLayout[])}
+          onBreakpointChange={(_, cols) => setColumns(cols)}
           isDraggable={isEdit}
           isResizable={isEdit}
           maxRows={6}

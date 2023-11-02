@@ -34,18 +34,18 @@ function getLayoutFromLS() {
 }
 
 const useWidgetsLayout = (cols: number) => {
-  const [layout, setLayout] = useState<WidgetLayout[]>([])
+  const [layouts, setLayouts] = useState<WidgetLayout[]>([])
 
   const { toast } = useToast()
 
-  const selectedWidgets = layout.map((l) => l.i)
+  const selectedWidgets = layouts.map((l) => l.i)
 
   useEffect(() => {
-    setLayout(getLayoutFromLS())
+    setLayouts(getLayoutFromLS())
   }, [])
 
   const setLayoutAndSave = (newLayout: WidgetLayout[]) => {
-    setLayout(newLayout)
+    setLayouts(newLayout)
     localStorage.setItem('widgetsLayout', JSON.stringify(newLayout))
   }
 
@@ -54,16 +54,16 @@ const useWidgetsLayout = (cols: number) => {
   }
 
   const addWidget = (widgetKey: WidgetType) => {
-    if (layout.find((l) => l.i === widgetKey)) {
+    if (layouts.find((l) => l.i === widgetKey)) {
       return alert('Widget already added')
     }
-    const newLayout = [...layout]
+    const newLayout = [...layouts]
 
     const { w, h } = widgetsMap[widgetKey].sizes
     newLayout.push({
       i: widgetKey,
       // TODO cols is dynamic
-      x: (layout.length * 2) % cols,
+      x: (layouts.length * 2) % cols,
       y: Infinity, // puts it at the bottom
       w,
       h,
@@ -72,7 +72,7 @@ const useWidgetsLayout = (cols: number) => {
   }
 
   const removeWidget = (widgetKey: WidgetType) => {
-    const newLayout = layout.filter((l) => l.i !== widgetKey)
+    const newLayout = layouts.filter((l) => l.i !== widgetKey)
     setLayoutAndSave(newLayout)
 
     const widgetName = widgetsMap[widgetKey].name.toLowerCase()
@@ -83,7 +83,7 @@ const useWidgetsLayout = (cols: number) => {
   }
 
   return {
-    layout,
+    layout: layouts,
     addWidget,
     removeWidget,
     selectedWidgets,
