@@ -62,7 +62,6 @@ const useWidgetsLayout = (cols: number) => {
     const { w, h } = widgetsMap[widgetKey].sizes
     newLayout.push({
       i: widgetKey,
-      // TODO cols is dynamic
       x: (layouts.length * 2) % cols,
       y: Infinity, // puts it at the bottom
       w,
